@@ -26,6 +26,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.ui.WeatherDetailActivity" />
+
+        <receiver
+            android:name="MyWidgetProvider"
+            android:icon="@drawable/icon_weather"
+            android:label="Weather Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info" />
+        </receiver>
     </application>
 
 </manifest>
