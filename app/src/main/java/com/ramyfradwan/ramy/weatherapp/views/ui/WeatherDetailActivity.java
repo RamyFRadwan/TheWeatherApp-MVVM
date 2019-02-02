@@ -29,6 +29,7 @@ public class WeatherDetailActivity extends BaseActivity {
     private ImageView weather_icon;
     private WeatherViewModel viewModel;
     private String TAG = "WeatherDetailActivity";
+    private WeatherService restInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class WeatherDetailActivity extends BaseActivity {
         weather_icon = findViewById(R.id.weather_icon);
 
         WeatherApp weatherApp = (WeatherApp) getApplication();
-        WeatherService restInterface = WeatherApp.initRestClient();
+        restInterface = WeatherApp.initRestClient();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -52,7 +53,7 @@ public class WeatherDetailActivity extends BaseActivity {
             if (super.isNetworkAvailable()) {
                 loadCityData(countryName);
             } else {
-                Toast.makeText(this, R.string.notConnectedMessage, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Internet is not connected", Toast.LENGTH_LONG).show();
                 finish();
             }
         }
@@ -62,9 +63,7 @@ public class WeatherDetailActivity extends BaseActivity {
         viewModel.getWeatherByCountry(countryName).enqueue(new Callback<WeatherModel>() {
             @Override
             public void onResponse(@NonNull Call<WeatherModel> call, @NonNull Response<WeatherModel> response) {
-                if (response.body() != null) {
-                    generateUI(response.body());
-                }
+                generateUI(response.body());
             }
 
             @Override
@@ -76,7 +75,7 @@ public class WeatherDetailActivity extends BaseActivity {
 
     @SuppressLint("SetTextI18n")
     private void generateUI(WeatherModel weatherModel) {
-        tv_temp.setText(weatherModel.getMain().getTemp() + "");
+        tv_temp.setText((weatherModel.getMain().getTemp_max() - 273) + " , " + (weatherModel.getMain().getTemp_min() - 273));
         tv_climate_description.setText(weatherModel.getWeather()[0].getMain() + ", " + weatherModel.getWeather()[0].getDescription());
         loadImageFromUrlToImageView(weather_icon, weatherModel.getWeather()[0].getIcon());
     }
@@ -84,7 +83,7 @@ public class WeatherDetailActivity extends BaseActivity {
     private void loadImageFromUrlToImageView(final ImageView imageView, String imageIconName) {
 
         if (imageIconName != null) {
-            String imageUri = Constants.IMAGE_URL + imageIconName + this.getString(R.string.imageExtentionPNG);
+            String imageUri = Constants.IMAGE_URL + imageIconName + ".png";
             Log.d(TAG, "ImageURL" + imageUri);
 
             // To load the image dynamically on-fly
@@ -95,7 +94,7 @@ public class WeatherDetailActivity extends BaseActivity {
                     .into(imageView);
 
         } else {
-            Log.e(TAG, this.getString(R.string.imageNotFound));
+            Log.e(TAG, "Image ICON NOT FOUND");
         }
     }
 }

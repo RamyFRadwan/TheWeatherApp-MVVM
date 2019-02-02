@@ -5,8 +5,8 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.ramyfradwan.ramy.weatherapp.BuildConfig;
 import com.ramyfradwan.ramy.weatherapp.service.WeatherService;
+import com.ramyfradwan.ramy.weatherapp.utils.Constants;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,7 +21,9 @@ public class WeatherApp extends Application {
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
 
-        Retrofit adapter = new Retrofit.Builder().baseUrl(BuildConfig.WeatherApiKey).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        Retrofit adapter = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson)).build();
         return adapter.create(WeatherService.class);
     }
 
