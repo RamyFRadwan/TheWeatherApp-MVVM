@@ -16,7 +16,7 @@ public class WeatherRepository {
 
     private static WeatherService weatherService;
 
-    public static WeatherService getInstance() {
+    static WeatherService getInstance() {
         weatherService = WeatherApp.initRestClient();
         return weatherService;
     }
