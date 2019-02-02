@@ -75,7 +75,14 @@ public class WeatherDetailActivity extends BaseActivity {
 
     @SuppressLint("SetTextI18n")
     private void generateUI(WeatherModel weatherModel) {
-        tv_temp.setText((weatherModel.getMain().getTemp_max() - 273) + " , " + (weatherModel.getMain().getTemp_min() - 273));
+        tv_temp.setText(getString(R.string.max)
+                + " "
+                + ((int) weatherModel.getMain().getTemp_max() - 273)
+                + " , "
+                + getString(R.string.min)
+                + " "
+                + ((int) weatherModel.getMain().getTemp_min() - 273));
+
         tv_climate_description.setText(weatherModel.getWeather()[0].getMain() + ", " + weatherModel.getWeather()[0].getDescription());
         loadImageFromUrlToImageView(weather_icon, weatherModel.getWeather()[0].getIcon());
     }
