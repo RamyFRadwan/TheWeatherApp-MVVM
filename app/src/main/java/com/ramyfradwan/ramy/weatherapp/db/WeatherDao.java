@@ -2,6 +2,7 @@ package com.ramyfradwan.ramy.weatherapp.db;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -16,5 +17,6 @@ public interface WeatherDao {
     void deleteAll();
 
     @Query("SELECT * from weather_table ORDER BY day ASC")
-    List<WeatherTable> getAllWords();
+    LiveData<List<WeatherTable>> getAllWords();
+
 }

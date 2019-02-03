@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_cityname"
+        style="@style/TextAppearance.AppCompat.Display4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/london_uk"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimem_20sp" />
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_temp"
+            style="@style/TextAppearance.AppCompat.Display4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/temp_data_example"
+            android:textSize="@dimen/dimen_18sp" />
+
+        <TextView
+            android:id="@+id/tv_climate_description"
+            style="@style/TextAppearance.AppCompat.Display4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Clouds, broken clouds"
+            android:textSize="@dimen/dimen_18sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="30dp"
+            android:background="#FF0000FF" />
+
+        <ImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:alpha="0.2" />
+
+    </LinearLayout>
+
+</LinearLayout>

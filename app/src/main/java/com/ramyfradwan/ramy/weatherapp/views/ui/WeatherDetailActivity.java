@@ -42,7 +42,6 @@ public class WeatherDetailActivity extends BaseActivity {
         tv_climate_description = findViewById(R.id.tv_climate_description);
         weather_icon = findViewById(R.id.weather_icon);
 
-        WeatherApp weatherApp = (WeatherApp) getApplication();
         restInterface = WeatherApp.initRestClient();
 
         Bundle extras = getIntent().getExtras();
